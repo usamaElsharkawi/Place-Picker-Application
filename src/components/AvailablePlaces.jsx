@@ -24,9 +24,8 @@ export default function AvailablePlaces({ onSelectPlace }) {
           setAvailablePlaces(sortedPlaces);
           setIsFetching(false);
         },(error)=>{
-          console.log(error)
           setAvailablePlaces(places)
-          setIsFetching(false)
+          setIsFetching(false)  
         });
       } catch (error) {
         setError({
