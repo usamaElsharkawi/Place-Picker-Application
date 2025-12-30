@@ -4,22 +4,32 @@ export async function fetchAvailablePlaces() {
   if (!response.ok) {
     throw new Error("Faild to fetch places");
   }
-  return resData.places
+  return resData.places;
 }
 
-export async function updatedUserPlaces(places){
-    const response = await fetch('http://localhost:3000/user-placess',{
-        'method' : "PUT",
-        'body':JSON.stringify({places}),
-        'headers':{
-            'Content-Type':"application/json"
-        }
-    })
+export async function updatedUserPlaces(places) {
+  const response = await fetch("http://localhost:3000/user-places", {
+    method: "PUT",
+    body: JSON.stringify({ places }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-    if(!response.ok){
-        throw new Error("Faild to update user data")
-    }
+  if (!response.ok) {
+    throw new Error("Faild to update user data");
+  }
 
-    const resData = await response.json()
-    return resData.message;
+  const resData = await response.json();
+  return resData.message;
+}
+
+export async function fetchUserPlaces() {
+  const response = await fetch("http://localhost:3000/user-places");
+  const resData = await response.json();
+  if (!response.ok) {
+    // Safety check
+    throw new Error("Failed to fetch user places");
+  }
+  return resData.places;
 }
